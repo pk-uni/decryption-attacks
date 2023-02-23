@@ -28,11 +28,8 @@ public class Main {
             e.printStackTrace();
         }
 
-
-
         System.out.println(good_keys);
-//        String decrypted_cipher = Rotor96Crypto.encdec(2, good_keys.get(0), ct);
-//        System.out.println(decrypted_cipher);
+        System.out.println(Rotor96Crypto.encdec(2, good_keys.get(0), ct));
     }
 }
 
