@@ -67,7 +67,7 @@ public class CipherText {
     }
 
 
-    public double calcElementWiseDifference(double[] x, double[] y) {
+    private double calcElementWiseDifference(double[] x, double[] y) {
         double[] elementwiseDifference = new double[26];
         Arrays.fill(elementwiseDifference, 0);
         for (int i = 0; i < 26; i++) {
@@ -97,8 +97,11 @@ public class CipherText {
     }
 
 
-    private double[] calcEuclideanDistance(double[] x, double[] y) {
-
-        return null;
+    private double calcEuclideanDistance(double[] x, double[] y) {
+        double sum = 0;
+        for (int i = 0; i < 26; i++) {
+            sum += Math.pow(x[i] - y[i], 2);
+        }
+        return Math.sqrt(sum);
     }
 }
