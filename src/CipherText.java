@@ -2,11 +2,18 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class CipherText {
+public class CipherText implements Comparable<CipherText> {
 
+    public String getCt() {
+        return ct;
+    }
+
+    public double getScore() {
+        return score;
+    }
 
     private final String ct;
-    private final double[] ctLetterFrequencies;
+    private final double score;
     private final double[] letterFrequenciesInText = {
             8.2, 1.5, 2.8, 4.3, 13.0, 2.2, 2.0, 6.1, 7.0,
             0.15, 0.77, 4.0, 2.4, 6.7, 7.5, 1.9, 0.095, 6.0,
@@ -27,7 +34,8 @@ public class CipherText {
 
     public CipherText(String ct) {
         this.ct = ct;
-        this.ctLetterFrequencies = calculateLetterFrequencies();
+        double[] ctLetterFrequencies = calculateLetterFrequencies();
+        this.score = calcCorrelationCoefficient(letterFrequenciesInText, ctLetterFrequencies);
     }
 
 
@@ -103,5 +111,10 @@ public class CipherText {
             sum += Math.pow(x[i] - y[i], 2);
         }
         return Math.sqrt(sum);
+    }
+
+    @Override
+    public int compareTo(CipherText o) {
+        return Double.compare(this.score, o.score);
     }
 }
