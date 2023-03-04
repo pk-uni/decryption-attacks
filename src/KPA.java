@@ -27,12 +27,17 @@ public class KPA {
             e.printStackTrace();
         }
 
-        System.out.println(ct);
-        System.out.println(good_keys);
-        for (String key : good_keys) {
-            System.out.println(Rotor96Crypto.encdec(2, key, ct));
+        int bestKeyIndex = 0;
+        double highestScore = new CipherText(Rotor96Crypto.encdec(2, good_keys.get(0), ct)).getScore();
+        for (int i = 1; i < good_keys.size(); i++) {
+            CipherText temp_ct = new CipherText(Rotor96Crypto.encdec(2, good_keys.get(i), ct));
+            if (temp_ct.getScore() > highestScore) {
+                bestKeyIndex = i;
+            }
         }
 
+        String correctKey = good_keys.get(bestKeyIndex);
+        System.out.printf("Correct key is: %s %n", correctKey);
+        System.out.printf("The decoded message is: %n%s %n", Rotor96Crypto.encdec(2, correctKey, ct));
     }
 }
-
