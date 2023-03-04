@@ -29,6 +29,7 @@ public class COA {
 //        System.out.println("---------------");
 //        System.out.printf("Ciphertext letters required before unambiguous decoding is possible: %d %n", unambiguousDecodingMinLength);
         System.out.printf("Correct key is: %s %n", correctKey);
+        System.out.printf("The decoded message is: %n%s %n", Rotor96Crypto.encdec(2, correctKey, ciphertext));
     }
 
     public static String findKey(String ct) {
