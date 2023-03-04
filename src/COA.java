@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class COA {
 
     static CipherText decryptedCipherText;
+    static String correctKey;
 
     public static void main(String[] args) {
         File f = new File("C:\\Uni\\CSD-Coursework\\decryption-attacks\\src\\passwords");
@@ -20,13 +21,17 @@ public class COA {
             while ((key = br.readLine()) != null) {
                 String decrypted_ct = Rotor96Crypto.encdec(2, key, ct);
                 CipherText temp_ct = new CipherText(decrypted_ct);
-                if (temp_ct.compareTo(decryptedCipherText) > 0) decryptedCipherText = temp_ct;
+                if (temp_ct.compareTo(decryptedCipherText) > 0) {
+                    decryptedCipherText = temp_ct;
+                    correctKey = key;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         System.out.println(decryptedCipherText.ct);
+        System.out.println(correctKey);
 
     }
 
