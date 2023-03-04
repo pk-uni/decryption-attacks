@@ -17,6 +17,7 @@ public class COA {
         String correctKey = findKey(ciphertext);
 
         // Finds actual number of letters required before unambiguous decoding is possible
+        // uncomment the code below to see how the actual number is found
 //        List<Integer> isCorrectKeyArr = new ArrayList<>();
 //        System.out.println("Progress:");
 //        for (int i = 0; i < ciphertext.length(); i++) {
